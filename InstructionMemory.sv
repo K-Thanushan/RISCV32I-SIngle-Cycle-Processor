@@ -7,7 +7,7 @@ module InstructionMemory (
 
     initial
     begin
-        //addi x1,zero,4
+        //addi x1,zero,2
         INSMEM[0] = 8'b10010011;
         INSMEM[1] = 8'b00000000;
         INSMEM[2] = 8'b01000000;

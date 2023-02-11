@@ -7,7 +7,7 @@ module ControlUnit (
     output logic ALUSrc,
     output logic RegWrite,
     output logic MEMControl,
-    output logic ImGenControl,
+    output logic [2:0] ImGenControl,
     output logic [1:0] ALUOp
 );
 
@@ -63,13 +63,13 @@ module ControlUnit (
 
             7'b0010011 : begin    //I-Type immediate
                 Branch = 1'b0;
-                MemRead = 1'b1;
+                MemRead = 1'b0;
                 MemtoReg = 1'b0;
                 MemWrite = 1'b0;
                 ALUSrc = 1'b1;
                 RegWrite = 1'b1;
                 MEMControl = 1'bx;
-                ImGenControl = 3'b011;
+                ImGenControl = 3'b000;
                 ALUOp = 2'b11;
             end 
         endcase

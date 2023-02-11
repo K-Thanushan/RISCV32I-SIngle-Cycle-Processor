@@ -19,7 +19,7 @@ always_comb begin
         4'b0111 : ALU_Out = Data1 || Data2;
         4'b1000 : ALU_Out = Data1 ^ Data2;
         4'b1001 : ALU_Out = Data1 < Data2;
-        4'b1010 : ALU_Out = Data1 < $unsigned(Data2);
+        4'b1010 : ALU_Out = $unsigned(Data1) < $unsigned(Data2);
         default : ALU_Out = 32'd0;
     endcase
 end
@@ -31,8 +31,8 @@ always_comb begin
     unique case(ALU_Select)
         4'b1011 : B_Flag = Data1 < $signed(Data2);
         4'b1100 : B_Flag = Data1 >= $signed(Data2);
-        4'b1101 : B_Flag = Data1 < $unsigned(Data2);
-        4'b1110 : B_Flag = Data1 >= $unsigned(Data2);
+        4'b1101 : B_Flag = $unsigned(Data1) < $unsigned(Data2);
+        4'b1110 : B_Flag = $unsigned(Data1) >= $unsigned(Data2);
         default : B_Flag = 1'd0;
     endcase
 end

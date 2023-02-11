@@ -27,10 +27,10 @@ module ImmediateGenerator (
 
     always_comb begin
         unique case (ImGenControl)
-            3'b000 : Immediate =  {{20{Instruction[31]}}, Data1}; //Load
-            3'b001 : Immediate =  {{20{Instruction[31]}}, Data3}; //Store
-            3'b010 : Immediate =  {{20{Instruction[31]}}, Data2}; //SB Type
-            3'b011 : Immediate =  {{12{Instruction[31]}}, Data4}; //JAL
+            3'b000 : Immediate =  32'(signed'(Data1)); //Load
+            3'b001 : Immediate =  32'(signed'(Data3)); //Store
+            3'b010 : Immediate =  32'(signed'(Data2)); //SB Type
+            3'b011 : Immediate =  32'(signed'(Data4)); //JAL
         endcase
     end
     

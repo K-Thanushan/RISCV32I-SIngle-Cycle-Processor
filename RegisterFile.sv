@@ -12,17 +12,25 @@ module RegisterFile #(parameter Width = 32) (
 
     reg [Width - 1:0] Register_File[Width - 1:0];
     integer n;
+    integer m;
 
     //assign Register_File[5'b00000] = 32'd0;
     assign R_Data1 = Register_File[R_add1];
     assign R_Data2 = Register_File[R_add2];
+
+    initial begin
+        for (m=0; m<32; m=m+1) 
+		begin
+			Register_File[m] <= 32'd0;
+		end
+    end
 
     always_ff@(posedge clk or posedge reset)begin
 		if (reset==1'b1)
 		begin
 			for (n=0; n<32; n=n+1) 
 			begin
-			Register_File[1] <= 32'd0;
+			Register_File[n] <= 32'd0;
 			end
 		end 
 		

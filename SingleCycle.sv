@@ -13,7 +13,8 @@ module SingleCycle #( parameter Width = 32) (
     logic [Width - 1:0]Data_out1; //mux1
     logic [Width - 1:0]Data_out2; //mux2
     logic [Width - 1:0]Data_out3; //mux3
-    logic Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, MEMControl, ImGenControl, BranchCondition; //CU
+    logic Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, MEMControl, BranchCondition; //CU
+    logic [2:0] ImGenControl;
     logic [1:0] ALUOp; logic [3:0] Operation; //ALU control
     logic [2:0] Mode; //Memory Controller
     logic [Width - 1:0] Adder1_out; //adder1
@@ -21,7 +22,7 @@ module SingleCycle #( parameter Width = 32) (
 
 
     ProgramCounter PC(	
-        .Next_PC(data_out1),
+        .Next_PC(Data_out1),
         .clk(clk),
         .reset(reset),
         .Current_PC(PC_Out)
@@ -40,7 +41,7 @@ module SingleCycle #( parameter Width = 32) (
 
     DataSeparator DataSep(
         .Instruction(Instruction),
-        .Opcode(Opcode),
+        .Opcode(opcode),
         .rd(rd),
         .funct3(funct3),
         .rs1(rs1),
@@ -87,7 +88,7 @@ module SingleCycle #( parameter Width = 32) (
         .A(Adder1_out), 
         .B(Adder2_out), 
         .selection(BranchCondition), //check criteria
-        .Data(data_out1)
+        .Data(Data_out1)
     );
 
     Mux M2(
@@ -98,8 +99,8 @@ module SingleCycle #( parameter Width = 32) (
     );
 
     Mux M3(
-        .A(Read_Data), 
-        .B(Result), 
+        .A(Result), 
+        .B(Read_Data), 
         .selection(MemtoReg),
         .Data(Data_out3)
     );
@@ -142,7 +143,7 @@ module SingleCycle #( parameter Width = 32) (
 
     Adder A2(
         .A(PC_Out), 
-        .B(imm_data<<1), //check
+        .B(Imm_Data<<1), //check
         .Sum(Adder2_out) 
     );
 

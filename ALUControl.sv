@@ -14,7 +14,7 @@ module ALUControl (
                     4'bx101 : ALUControl = 4'b1100; //BGE
                     4'bx110 : ALUControl = 4'b1101; //BLTU
                     4'bx111 : ALUControl = 4'b1110; //BGEU
-						  default : ALUControl =4'b0001;
+					default : ALUControl =4'b0001;
                 endcase
             end
             2'b10 : begin
@@ -29,7 +29,7 @@ module ALUControl (
                     4'b1101 : ALUControl = 4'b0101;
                     4'b0110 : ALUControl = 4'b0111;
                     4'b0111 : ALUControl = 4'b0110;
-						  default : ALUControl =4'b0000;
+					default : ALUControl =4'b0000;
                 endcase
             end
             2'b11 : begin
