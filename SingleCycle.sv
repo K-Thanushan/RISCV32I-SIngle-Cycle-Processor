@@ -1,18 +1,19 @@
 module SingleCycle #( parameter Width = 32) (
     input logic clk,
-    input logic reset
+    input logic reset,
+	 output logic [Width - 1:0] Result,
+	 output logic [Width - 1:0] PC_Out // PC
+	 
 );
-    logic [Width - 1:0] PC_Out; // PC
     logic [Width -1:0] Instruction; //Instructionmemory
     logic [Width - 1:0] Imm_Data; //Immediate Generator
     logic [6:0]opcode; logic [4:0]rd; logic [2:0]funct3; logic [4:0]rs1; logic [4:0]rs2; logic [6:0]funct7; //Data Separator
     logic [Width - 1:0] ReadData1; logic [Width - 1:0]ReadData2; //RegisterFile 
-    logic [Width - 1:0] Result; //ALU 32bit
     logic Zero, B_Flag;
     logic [Width - 1:0] Read_Data; //Data memory
-    logic [Width - 1:0]Data_out1; //mux1
-    logic [Width - 1:0]Data_out2; //mux2
-    logic [Width - 1:0]Data_out3; //mux3
+    logic [Width - 1:0] Data_out1; //mux1
+    logic [Width - 1:0] Data_out2; //mux2
+    logic [Width - 1:0] Data_out3; //mux3
     logic Branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, MEMControl, BranchCondition; //CU
     logic [2:0] ImGenControl;
     logic [1:0] ALUOp; logic [3:0] Operation; //ALU control
@@ -20,7 +21,7 @@ module SingleCycle #( parameter Width = 32) (
     logic [Width - 1:0] Adder1_out; //adder1
     logic [Width - 1:0] Adder2_out; //adder2
 
-
+	 
     ProgramCounter PC(	
         .Next_PC(Data_out1),
         .clk(clk),

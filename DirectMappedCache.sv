@@ -36,8 +36,24 @@ reg [7:0] v_CacheData [0:VC_Blocks-1][0:BlockSize-1];
 reg [TagWidth-1:0] v_CacheTag [0:VC_Blocks-1];
 reg v_CacheValid [0:VC_Blocks-1];
 
+integer p,q,m,n;
+
+initial begin
+    for (p = 0; p < Blocks; p = p +1) begin
+        for (q = 0; q < BlockSize; q = q + 1) begin
+            CacheData [p][q] <= 0;
+        end
+    end
+
+    for (p = 0; p < Blocks; p = p +1) begin
+        for (q = 0; q < BlockSize; q = q + 1) begin
+            CacheData [p][q] <= 0;
+        end
+    end
+end
+
+
 // Outputs
-assign Data_OUT = CacheData[index][B_add];
 assign Hit = CacheValid[index] & (CacheTag[index] == tag);
 assign VictimCacheReadAddress = {v_CacheTag[0], index, 1'b0};
 
@@ -48,13 +64,13 @@ always @(posedge clk) begin
             3'b101 :  CacheData[index][B_add] <= Data_IN[7:0]; //SB
             3'b110 : begin //SHW
                 CacheData[index][B_add] <= Data_IN[7:0];
-                CacheData[index][B_add] <= Data_IN[15:8];
+                CacheData[index][B_add + 1] <= Data_IN[15:8];
             end
             3'b111 : begin //SW
                 CacheData[index][B_add] <= Data_IN[7:0];
-                CacheData[index][B_add] <= Data_IN[15:8];
-                CacheData[index][B_add] <= Data_IN[23:16];
-                CacheData[index][B_add] <= Data_IN[31:24];
+                CacheData[index][B_add + 1] <= Data_IN[15:8];
+                CacheData[index][B_add + 2] <= Data_IN[23:16];
+                CacheData[index][B_add + 3] <= Data_IN[31:24];
             end
         endcase
         CacheData[index][addr[BlockWidth-1:0]] <= Data_IN;

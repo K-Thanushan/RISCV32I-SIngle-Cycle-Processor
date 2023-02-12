@@ -7,20 +7,20 @@ module InstructionMemory (
 
     initial
     begin
-        //addi x1,zero,2
+        //addi x1,zero,4
         INSMEM[0] = 8'b10010011;
         INSMEM[1] = 8'b00000000;
         INSMEM[2] = 8'b01000000;
         INSMEM[3] = 8'b00000000;
-        //addi x22,zero,0
+        //addi x2,zero,6
         INSMEM[4] = 8'b00010011;
         INSMEM[5] = 8'b00001011;
-        INSMEM[6] = 8'b00000000;
+        INSMEM[6] = 8'b00100000;
         INSMEM[7] = 8'b00000000;
-        //addi x23,zero,0
-        INSMEM[8] = 8'b10010011;
-        INSMEM[9] = 8'b00001011;
-        INSMEM[10] = 8'b00000000;
+        //slt x3, x1,x2,
+        INSMEM[8] = 8'b10110011;
+        INSMEM[9] = 8'b10100001;
+        INSMEM[10] = 8'b00100000;
         INSMEM[11] = 8'b00000000;
         //add x5,zero,zero
         INSMEM[12] = 8'b10110011;
@@ -32,7 +32,7 @@ module InstructionMemory (
         INSMEM[17] = 8'b00000001;
         INSMEM[18] = 8'b00000000;
         INSMEM[19] = 8'b00000000;
-        //addi x3,zero,0 array
+        //addi x3,zero,2
         INSMEM[20] = 8'b10010011;
         INSMEM[21] = 8'b00000001;
         INSMEM[22] = 8'b00000000;

@@ -20,7 +20,7 @@ module ControlUnit (
                 MemWrite = 1'b0;
                 ALUSrc = 1'b0;
                 RegWrite = 1'b1;
-                MEMControl = 1'bx;
+                MEMControl = 1'b0;
                 ImGenControl = 3'dx;
                 ALUOp = 2'b10;   
             end
@@ -40,7 +40,7 @@ module ControlUnit (
             7'b0100011 : begin    //S-Type store
                 Branch = 1'b0;
                 MemRead = 1'b0;
-                MemtoReg = 1'bx;
+                MemtoReg = 1'b0;
                 MemWrite = 1'b1;
                 ALUSrc = 1'b1;
                 RegWrite = 1'b0;
@@ -52,11 +52,11 @@ module ControlUnit (
             7'b1100011 : begin    //SB-Type 
                 Branch = 1'b1;
                 MemRead = 1'b0;
-                MemtoReg = 1'bx;
+                MemtoReg = 1'b0;
                 MemWrite = 1'b0;
                 ALUSrc = 1'b0;
                 RegWrite = 1'b0;
-                MEMControl = 1'bx;
+                MEMControl = 1'b0;
                 ImGenControl = 3'b010;
                 ALUOp = 2'b01;
             end
@@ -68,7 +68,7 @@ module ControlUnit (
                 MemWrite = 1'b0;
                 ALUSrc = 1'b1;
                 RegWrite = 1'b1;
-                MEMControl = 1'bx;
+                MEMControl = 1'b0;
                 ImGenControl = 3'b000;
                 ALUOp = 2'b11;
             end 

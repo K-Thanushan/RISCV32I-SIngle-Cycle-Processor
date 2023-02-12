@@ -20,7 +20,7 @@ module ImmediateGenerator (
     assign Data3[4:0] = Instruction[11:7]; //Store
     assign Data3[11:5] = Instruction[31:25];
     
-    assign Data4[9:0] = Instruction[30:21]; 
+    assign Data4[9:0] = Instruction[30:21]; //J-Type
     assign Data4[10] = Instruction[20];
     assign Data4[18:11] = Instruction[19:12];
     assign Data4[19] = Instruction[31];
@@ -31,6 +31,7 @@ module ImmediateGenerator (
             3'b001 : Immediate =  32'(signed'(Data3)); //Store
             3'b010 : Immediate =  32'(signed'(Data2)); //SB Type
             3'b011 : Immediate =  32'(signed'(Data4)); //JAL
+            default : Immediate = 32'd0;
         endcase
     end
     
