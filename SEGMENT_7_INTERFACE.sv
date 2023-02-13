@@ -1,50 +1,50 @@
 module SEGMENT_7_INTERFACE(
    	input logic [31:0] data,
-		output reg [6:0] dig_arr [7:0]
+		output reg [6:0] digit_array [7:0]
    	);
     
-   	reg [3:0] bcd_arr [7:0];
+   	reg [3:0] BCD_array [7:0];
 	
-		assign bcd_arr[0] = data[3:0];
-		assign bcd_arr[1] = data[7:4];
-		assign bcd_arr[2] = data[11:8];
-		assign bcd_arr[3] = data[15:12];
-		assign bcd_arr[4] = data[19:16];
-		assign bcd_arr[5] = data[23:20];
-		assign bcd_arr[6] = data[27:24];
-		assign bcd_arr[7] = data[31:28];
+		assign BCD_array[0] = data[3:0];
+		assign BCD_array[1] = data[7:4];
+		assign BCD_array[2] = data[11:8];
+		assign BCD_array[3] = data[15:12];
+		assign BCD_array[4] = data[19:16];
+		assign BCD_array[5] = data[23:20];
+		assign BCD_array[6] = data[27:24];
+		assign BCD_array[7] = data[31:28];
 
 		SSD SSD_0(
-			.BCD(bcd_arr[0]),
-			.digit(dig_arr[0])
+			.BCD(BCD_array[0]),
+			.digit(digit_array[0])
 		);
 		SSD SSD_1(
-			.BCD(bcd_arr[1]),
-			.digit(dig_arr[1])
+			.BCD(BCD_array[1]),
+			.digit(digit_array[1])
 		);
 		SSD SSD_2(
-			.BCD(bcd_arr[2]),
-			.digit(dig_arr[2])
+			.BCD(BCD_array[2]),
+			.digit(digit_array[2])
 		);
 		SSD SSD_3(
-			.BCD(bcd_arr[3]),
-			.digit(dig_arr[3])
+			.BCD(BCD_array[3]),
+			.digit(digit_array[3])
 		);
 		SSD SSD_4(
-			.BCD(bcd_arr[4]),
-			.digit(dig_arr[4])
+			.BCD(BCD_array[4]),
+			.digit(digit_array[4])
 		);
 		SSD SSD_5(
-			.BCD(bcd_arr[5]),
-			.digit(dig_arr[5])
+			.BCD(BCD_array[5]),
+			.digit(digit_array[5])
 		);
 		SSD SSD_6(
-			.BCD(bcd_arr[6]),
-			.digit(dig_arr[6])
+			.BCD(BCD_array[6]),
+			.digit(digit_array[6])
 		);
 		SSD SSD_7(
-			.BCD(bcd_arr[7]),
-			.digit(dig_arr[7])
+			.BCD(BCD_array[7]),
+			.digit(digit_array[7])
 		);
 		 
 

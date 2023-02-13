@@ -17,8 +17,8 @@ module SingleCycle_tb();
 		
 	initial
 	begin
-		@(posedge clk);
-        #(CLK_PERIOD*2);
+		/*@(posedge clk);
+        #(CLK_PERIOD*2);*/
 
 		@(posedge clk);
 		reset <= 1'b1;

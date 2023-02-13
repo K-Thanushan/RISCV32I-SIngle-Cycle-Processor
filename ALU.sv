@@ -29,8 +29,8 @@ assign Zero = (ALU_Out == 0);
 
 always_comb begin
     unique case(ALU_Select)
-        4'b1011 : B_Flag = Data1 < $signed(Data2);
-        4'b1100 : B_Flag = Data1 >= $signed(Data2);
+        4'b1011 : B_Flag = $signed(Data1) < $signed(Data2);
+        4'b1100 : B_Flag = $signed(Data1) >= $signed(Data2);
         4'b1101 : B_Flag = $unsigned(Data1) < $unsigned(Data2);
         4'b1110 : B_Flag = $unsigned(Data1) >= $unsigned(Data2);
         default : B_Flag = 1'd0;
